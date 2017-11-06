@@ -13,6 +13,7 @@
 		475A003D1FAA3D2600C72F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 475A003C1FAA3D2600C72F30 /* Assets.xcassets */; };
 		475A00401FAA3D2600C72F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 475A003E1FAA3D2600C72F30 /* LaunchScreen.storyboard */; };
 		475A004B1FAA3D2700C72F30 /* CardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475A004A1FAA3D2600C72F30 /* CardViewTests.swift */; };
+		475A00571FAA418A00C72F30 /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475A00561FAA418A00C72F30 /* CardsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		475A00461FAA3D2600C72F30 /* CardViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		475A004A1FAA3D2600C72F30 /* CardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTests.swift; sourceTree = "<group>"; };
 		475A004C1FAA3D2700C72F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		475A00561FAA418A00C72F30 /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		475A00341FAA3D2600C72F30 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
+				475A00551FAA417600C72F30 /* CardsView */,
 				475A00351FAA3D2600C72F30 /* AppDelegate.swift */,
 				475A00371FAA3D2600C72F30 /* ViewController.swift */,
 				475A00391FAA3D2600C72F30 /* Main.storyboard */,
@@ -94,6 +97,14 @@
 				475A004C1FAA3D2700C72F30 /* Info.plist */,
 			);
 			path = CardViewTests;
+			sourceTree = "<group>";
+		};
+		475A00551FAA417600C72F30 /* CardsView */ = {
+			isa = PBXGroup;
+			children = (
+				475A00561FAA418A00C72F30 /* CardsView.swift */,
+			);
+			path = CardsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				475A00381FAA3D2600C72F30 /* ViewController.swift in Sources */,
+				475A00571FAA418A00C72F30 /* CardsView.swift in Sources */,
 				475A00361FAA3D2600C72F30 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +368,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DB8872T2A;
 				INFOPLIST_FILE = CardView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tulusha.CardView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,6 +384,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DB8872T2A;
 				INFOPLIST_FILE = CardView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tulusha.CardView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
