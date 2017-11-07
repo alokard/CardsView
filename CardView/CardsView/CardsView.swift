@@ -2,12 +2,8 @@ import UIKit
 
 protocol CardsViewDataSource {
     func numberOfCards() -> Int
-    func cardCellForItem(at index: Int) -> CardCellView
+    func cardCellForItem(at index: Int) -> UIView
     func emptyStateView() -> UIView?
-}
-
-class CardCellView: UIView {
-    
 }
 
 enum SwipeDirection {
@@ -22,7 +18,7 @@ open class CardsView: UIView {
     var dataSource: CardsViewDataSource?
     var numberOfVisibleCells: Int = 4
     
-    private var visibleCells = [CardCellView]()
+    private var visibleCells = [UIView]()
     private var cardsPoolCount = 0
     
     func reloadData() {
@@ -50,7 +46,7 @@ open class CardsView: UIView {
         visibleCells = []
     }
     
-    private func add(cardCell: CardCellView, at index: Int) {
+    private func add(cardCell: UIView, at index: Int) {
         adjustSizeTransform(for: cardCell, at: index)
         visibleCells.append(cardCell)
         insertSubview(cardCell, at: 0)
@@ -58,24 +54,32 @@ open class CardsView: UIView {
     }
     
     private func add(emptyView: UIView) {
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(emptyView)
         
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: self.topAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
     
-    private func adjustSizeTransform(for cardCell: CardCellView, at index: Int) {
+    private func adjustSizeTransform(for cardCell: UIView, at index: Int) {
+        var cardViewFrame = bounds
+        let horizontalInset = (CGFloat(index) * 12)
+        let verticalInset = CGFloat(index) * 12
         
+        cardViewFrame.size.width -= 2 * horizontalInset
+        cardViewFrame.origin.x += horizontalInset
+        cardViewFrame.origin.y += verticalInset
+        
+        cardCell.frame = cardViewFrame
     }
     
-    private func didSwipe(cell: CardCellView) {
+    private func didSwipe(cell: UIView) {
+        handleSwipedCell(cell)
         guard let dataSource = dataSource else { return }
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            //TODO: complete card move off the screen animation
-        }) { completed in
-            cell.removeFromSuperview()
-            if let index = self.visibleCells.index(of: cell) {
-                self.visibleCells.remove(at: index)
-            }
-        }
         
         if cardsPoolCount > 0 {
             let newIndex = dataSource.numberOfCards() - cardsPoolCount
@@ -90,5 +94,11 @@ open class CardsView: UIView {
                 })
             }
         }
+    }
+    
+    private func handleSwipedCell(_ cell: UIView) {
+        visibleCells.removeFirst()
+        
+        //TODO: call some delegate handler?
     }
 }
