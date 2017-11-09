@@ -10,16 +10,35 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var cardsView: CardsView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        view.backgroundColor = .blue
+        cardsView.backgroundColor = .red
+        cardsView.dataSource = self
+        cardsView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-
+extension ViewController: CardsViewDataSource {
+    func numberOfCards() -> Int {
+        return 5
+    }
+    
+    func cardCellForItem(at index: Int) -> UIView {
+        return SwipableCardCell(frame: cardsView.bounds)
+    }
+    
+    func emptyStateView() -> UIView? {
+        return nil
+    }
+    
+    
 }
 

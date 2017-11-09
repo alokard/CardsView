@@ -34,6 +34,34 @@ class SwipableCardCell: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapEvent(gesture:)))
         tapGesture.delegate = self
         self.addGestureRecognizer(tapGesture)
+        
+        self.addContentView(frame)
+    }
+    
+    private func addContentView(_ frame: CGRect) {
+        let container = UIView(frame: CGRect(x: 30, y: 20, width: frame.width - 60, height: frame.height - 40))
+        let label = UILabel(frame: container.bounds)
+        label.text = "element"
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 48, weight: UIFont.Weight.thin)
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 16
+        container.addSubview(label)
+        
+        container.layer.shadowRadius = 4
+        container.layer.shadowOpacity = 1.0
+        container.layer.shadowColor = UIColor(white: 0.9, alpha: 1.0).cgColor
+        container.layer.shadowOffset = CGSize(width: 0, height: 0)
+        container.layer.shouldRasterize = true
+        container.layer.rasterizationScale = UIScreen.main.scale
+        self.addSubview(container)
+        NSLayoutConstraint.activate([
+            container.topAnchor.constraint(equalTo: self.topAnchor),
+            container.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            container.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
     
     required init?(coder aDecoder: NSCoder) {

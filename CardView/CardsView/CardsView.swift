@@ -66,15 +66,16 @@ open class CardsView: UIView {
     }
     
     private func adjustSizeTransform(for cardCell: UIView, at index: Int) {
+        let scaleFactor = 1 - CGFloat(index) * 0.04
+        let transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+        
         var cardViewFrame = bounds
-        let horizontalInset = (CGFloat(index) * 12)
         let verticalInset = CGFloat(index) * 12
         
-        cardViewFrame.size.width -= 2 * horizontalInset
-        cardViewFrame.origin.x += horizontalInset
         cardViewFrame.origin.y += verticalInset
         
         cardCell.frame = cardViewFrame
+        cardCell.transform = transform
     }
     
     private func didSwipe(cell: UIView) {
